@@ -1,9 +1,10 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
+import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
+import com.ceiba.finca.servicio.ServicioCrearFinca;
+import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
+import com.ceiba.finca.servicio.ServicioActualizarFinca;
+import com.ceiba.finca.servicio.ServicioEliminarFinca;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,19 +12,19 @@ import org.springframework.context.annotation.Configuration;
 public class BeanServicio {
 
     @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioCrearUsuario(repositorioUsuario);
+    public ServicioCrearFinca servicioCrearFinca(RepositorioFinca repositorioFinca) {
+        return new ServicioCrearFinca(repositorioFinca);
     }
 
     @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
+    public ServicioEliminarFinca servicioEliminarFinca(RepositorioFinca repositorioFinca) {
+        return new ServicioEliminarFinca(repositorioFinca);
     }
 
     @Bean
-    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioActualizarUsuario(repositorioUsuario);
+    public ServicioActualizarFinca servicioActualizarFinca(RepositorioFinca repositorioFinca) {
+        return new ServicioActualizarFinca(repositorioFinca);
     }
-	
+
 
 }
