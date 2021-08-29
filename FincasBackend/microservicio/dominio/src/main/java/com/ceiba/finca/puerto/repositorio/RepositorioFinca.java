@@ -13,20 +13,6 @@ public interface RepositorioFinca {
     Long crear(Finca finca);
 
     /**
-     * Permite actualizar una finca
-     *
-     * @param finca
-     */
-    void actualizar(Finca finca);
-
-    /**
-     * Permite eliminar una finca
-     *
-     * @param id
-     */
-    void eliminar(Long id);
-
-    /**
      * Permite validar si existe una finca con un nombre
      *
      * @param nombre
@@ -34,12 +20,5 @@ public interface RepositorioFinca {
      */
     boolean existe(String nombre);
 
-    /**
-     * Permite validar si existe una finca con un nombre excluyendo un id
-     *
-     * @param nombre
-     * @return si existe o no
-     */
-    boolean existeExcluyendoId(Long id, String nombre);
 
 }

@@ -15,7 +15,7 @@ public class DaoReservaPgSql implements DaoReserva {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace = "usuario", value = "listar")
+    @SqlStatement(namespace = "reserva", value = "listar")
     private static String sqlListar;
 
     public DaoReservaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {

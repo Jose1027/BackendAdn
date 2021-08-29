@@ -7,7 +7,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
 public class ServicioCrearReserva {
 
-    private static final String LA_FINCA_YA_EXISTE_EN_EL_SISTEMA = "La finca ya se encuentra reserva en el sistema";
+    private static final String LA_FINCA_YA_EXISTE_EN_EL_SISTEMA = "La finca ya se encuentra reservada en el sistema";
 
     private final RepositorioReserva repositorioReserva;
 

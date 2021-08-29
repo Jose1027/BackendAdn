@@ -1,5 +1,6 @@
 package com.ceiba.reserva.comando;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class ComandoReserva {
     private Long id;
     private String idUsuario;
     private Long idFinca;
-    private Date fechaFinReserva;
+    private LocalDateTime fechaInicioReserva;
+    private LocalDateTime fechaFinReserva;
     private Double valorTotalReserva;
 }

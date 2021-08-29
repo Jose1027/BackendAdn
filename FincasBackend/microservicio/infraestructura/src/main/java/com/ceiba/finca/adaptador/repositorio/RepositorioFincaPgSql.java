@@ -1,36 +1,35 @@
-package com.ceiba.reserva.adaptador.repositorio;
+package com.ceiba.finca.adaptador.repositorio;
 
+import com.ceiba.finca.modelo.entidad.Finca;
+import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.reserva.modelo.entidad.Reserva;
-import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioReservaPgSql implements RepositorioReserva {
-
+public class RepositorioFincaPgSql implements RepositorioFinca {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="reserva", value="crear")
+    @SqlStatement(namespace="finca", value="crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="reserva", value="eliminar")
+    @SqlStatement(namespace="finca", value="eliminar")
     private static String sqlEliminar;
 
-    @SqlStatement(namespace="reserva", value="existe")
+    @SqlStatement(namespace="finca", value="existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="reserva", value="existeExcluyendoId")
+    @SqlStatement(namespace="finca", value="existeExcluyendoId")
     private static String sqlExisteExcluyendoId;
 
-    public RepositorioReservaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public RepositorioFincaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
     @Override
-    public Long crear(Reserva reserva) {
-        return this.customNamedParameterJdbcTemplate.crear(reserva, sqlCrear);
+    public Long crear(Finca finca) {
+        return this.customNamedParameterJdbcTemplate.crear(finca, sqlCrear);
     }
 
     @Override
@@ -40,5 +39,4 @@ public class RepositorioReservaPgSql implements RepositorioReserva {
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
-
 }

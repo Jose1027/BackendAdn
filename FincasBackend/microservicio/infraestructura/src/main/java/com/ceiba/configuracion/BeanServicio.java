@@ -3,8 +3,7 @@ package com.ceiba.configuracion;
 import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
 import com.ceiba.finca.servicio.ServicioCrearFinca;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
-import com.ceiba.finca.servicio.ServicioActualizarFinca;
-import com.ceiba.finca.servicio.ServicioEliminarFinca;
+import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,14 +16,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioEliminarFinca servicioEliminarFinca(RepositorioFinca repositorioFinca) {
-        return new ServicioEliminarFinca(repositorioFinca);
+    public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva) {
+        return new ServicioCrearReserva(repositorioReserva);
     }
-
-    @Bean
-    public ServicioActualizarFinca servicioActualizarFinca(RepositorioFinca repositorioFinca) {
-        return new ServicioActualizarFinca(repositorioFinca);
-    }
-
 
 }
