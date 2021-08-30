@@ -17,9 +17,9 @@ public class ComandoReservaTestDataBuilder {
 
     public ComandoReservaTestDataBuilder() {
         idUsuario = "1234";
-        idFinca = 1L;
+        idFinca = 2L;
         fechaInicioReserva = LocalDateTime.now();
-        fechaFinReserva = LocalDateTime.now();
+        fechaFinReserva = LocalDateTime.now().plusDays(3);
         valorTotalReserva = 400000.0;
     }
 

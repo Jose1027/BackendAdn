@@ -19,7 +19,7 @@ public class ReservaTestDataBuilder {
         idUsuario = "1088302416";
         idFinca = 1L;
         fechaInicioReserva = LocalDateTime.now();
-        fechaFinReserva = LocalDateTime.now();
+        fechaFinReserva = LocalDateTime.now().plusDays(3);
         valorTotalReserva = 800000.0;
     }
 

@@ -7,6 +7,8 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+
 @Repository
 public class RepositorioReservaMysql implements RepositorioReserva {
 
@@ -34,9 +36,11 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
-    public boolean existe(String idUsuario) {
+    public boolean existe(Long idFinca, LocalDateTime fechaInicioReserva, LocalDateTime fechaFinReserva) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idUsuario", idUsuario);
+        paramSource.addValue("idFinca", idFinca);
+        paramSource.addValue("fechaInicioReserva", fechaInicioReserva);
+        paramSource.addValue("fechaFinReserva", fechaFinReserva);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
