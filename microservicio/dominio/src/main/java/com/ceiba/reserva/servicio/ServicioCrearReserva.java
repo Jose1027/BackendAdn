@@ -7,7 +7,8 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
+import java.time.ZoneId;
+import java.util.*;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -68,9 +69,10 @@ public class ServicioCrearReserva {
     }
 
     public double calcularPrecioReservaPorDias(LocalDateTime fechaInicial, int dias, double precioPorDia) {
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Date dateFechaInicial = Date.from(fechaInicial.atZone(defaultZoneId).toInstant());
         Calendar fechaInicioCalendar = Calendar.getInstance();
-        fechaInicioCalendar.clear();
-        fechaInicioCalendar.set(fechaInicial.getYear(), fechaInicial.getMonthValue(), fechaInicial.getDayOfMonth(), 0, 0, 0);
+        fechaInicioCalendar.setTime(dateFechaInicial);
         int contadorDias = 0;
         double precioTotal = 0.0;
         while (contadorDias < dias) {

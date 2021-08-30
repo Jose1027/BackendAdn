@@ -1,6 +1,7 @@
 package com.ceiba.reserva.testdatabuilder;
 
 
+import com.ceiba.finca.modelo.dto.DtoFinca;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,8 @@ public class ReservaTestDataBuilder {
 
         idUsuario = "1088302416";
         idFinca = 1L;
-        fechaInicioReserva = LocalDateTime.now();
-        fechaFinReserva = LocalDateTime.now().plusDays(3);
+        fechaInicioReserva = LocalDateTime.now().plusDays(2);
+        fechaFinReserva = LocalDateTime.now().plusDays(5);
         valorTotalReserva = 800000.0;
     }
 
@@ -35,5 +36,14 @@ public class ReservaTestDataBuilder {
 
     public Reserva build(){
         return new Reserva(id,idUsuario,idFinca,fechaInicioReserva,fechaFinReserva);
+    }
+
+    public Reserva buildIdFincaNoExiste(){
+        return new Reserva(id,idUsuario,45L,fechaInicioReserva,fechaFinReserva);
+    }
+
+    public DtoFinca buildIDtoFinca(){
+        DtoFinca dtoFinca = new DtoFinca(1L,"la hermosa","vereda la hermosa",LocalDateTime.now().minusYears(2),400000.0,6);
+        return dtoFinca;
     }
 }
