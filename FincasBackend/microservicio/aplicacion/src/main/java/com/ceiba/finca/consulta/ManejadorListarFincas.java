@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ManejadorListasFincas {
+public class ManejadorListarFincas {
 
     private final DaoFinca daoFinca;
 
-    public ManejadorListasFincas(DaoFinca daoFinca) {
+    public ManejadorListarFincas(DaoFinca daoFinca) {
         this.daoFinca = daoFinca;
     }
 

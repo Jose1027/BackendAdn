@@ -1,42 +1,44 @@
-package com.ceiba.finca.adaptador.repositorio;
+package com.ceiba.reserva.adaptador.repositorio;
 
-import com.ceiba.finca.modelo.entidad.Finca;
-import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.reserva.modelo.entidad.Reserva;
+import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioFincaPgSql implements RepositorioFinca {
+public class RepositorioReservaMysql implements RepositorioReserva {
+
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="finca", value="crear")
+    @SqlStatement(namespace="reserva", value="crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="finca", value="eliminar")
+    @SqlStatement(namespace="reserva", value="eliminar")
     private static String sqlEliminar;
 
-    @SqlStatement(namespace="finca", value="existe")
+    @SqlStatement(namespace="reserva", value="existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="finca", value="existeExcluyendoId")
+    @SqlStatement(namespace="reserva", value="existeExcluyendoId")
     private static String sqlExisteExcluyendoId;
 
-    public RepositorioFincaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
     @Override
-    public Long crear(Finca finca) {
-        return this.customNamedParameterJdbcTemplate.crear(finca, sqlCrear);
+    public Long crear(Reserva reserva) {
+        return this.customNamedParameterJdbcTemplate.crear(reserva, sqlCrear);
     }
 
     @Override
-    public boolean existe(String nombre) {
+    public boolean existe(String idUsuario) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nombre", nombre);
+        paramSource.addValue("idUsuario", idUsuario);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
+
 }

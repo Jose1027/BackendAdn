@@ -1,3 +1,3 @@
 delete 
-from usuario
+from finca
 where id = :id

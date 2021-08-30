@@ -29,11 +29,11 @@ public class ConsultaControladorReservaTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/usuarios")
+        mocMvc.perform(get("/reservas")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].nombre", is("test")));
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].idUsuario", is("12345")));
     }
 
 

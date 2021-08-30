@@ -42,17 +42,4 @@ public class ComandoControladorReservaTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
-
-
-    @Test
-    public void eliminar() throws Exception {
-        // arrange
-        Long id = 2L;
-
-        // act - assert
-        mocMvc.perform(delete("/reservas/{id}",id)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 }

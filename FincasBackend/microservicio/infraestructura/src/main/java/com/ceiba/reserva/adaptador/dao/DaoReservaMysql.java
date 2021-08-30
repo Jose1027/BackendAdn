@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 
 @Component
-public class DaoReservaPgSql implements DaoReserva {
+public class DaoReservaMysql implements DaoReserva {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "reserva", value = "listar")
     private static String sqlListar;
 
-    public DaoReservaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public DaoReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 

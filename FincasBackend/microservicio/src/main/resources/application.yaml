@@ -4,18 +4,18 @@ jasypt:
       algorithm: PBEWithMD5AndDES
 
 server:
-   port: 
+   port: 8083
    servlet:
-      context-path: /
+      context-path: /microservicio
       session:
          timeout: 21600s
 
 spring:
    datasource:
-      driver-class-name: 
+      driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: 
-      username: 
-      password: 
+      jdbcUrl: jdbc:mysql://localhost:3306/microservicio
+      username: root
+      password: root
       hikari:
          poolName: pool

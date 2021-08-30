@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class DaoFincaPgSql implements DaoFinca {
+public class DaoFincaMysql implements DaoFinca {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "finca", value = "listar")
     private static String sqlListar;
 
-    public DaoFincaPgSql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public DaoFincaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
