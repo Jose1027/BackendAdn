@@ -29,6 +29,6 @@ public class ComandoReservaTestDataBuilder {
     }
 
     public ComandoReserva build() {
-        return new ComandoReserva(id, idUsuario, idFinca, fechaInicioReserva, fechaFinReserva, valorTotalReserva);
+        return new ComandoReserva(id, idUsuario, idFinca, fechaInicioReserva, fechaFinReserva);
     }
 }

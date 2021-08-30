@@ -1,24 +1,17 @@
 package com.ceiba.reserva.puerto.repositorio;
 
+import com.ceiba.finca.modelo.dto.DtoFinca;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface RepositorioReserva {
-    /**
-     * Permite crear una reserva
-     *
-     * @param reserva
-     * @return el id generado
-     */
+
     Long crear(Reserva reserva);
 
-    /**
-     * Permite validar si existe una reserva con un nombre
-     *
-     * @param idFinca
-     * @return si existe o no
-     */
     boolean existe(Long idFinca, LocalDateTime fechaInicioReserva, LocalDateTime fechaFinReserva);
+
+    List<DtoFinca> cargarFincaPorId(Long id);
 
 }

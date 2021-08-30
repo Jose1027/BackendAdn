@@ -14,8 +14,7 @@ public class FabricaReserva {
                 comandoReserva.getIdUsuario(),
                 comandoReserva.getIdFinca(),
                 comandoReserva.getFechaInicioReserva(),
-                comandoReserva.getFechaFinReserva(),
-                comandoReserva.getValorTotalReserva()
+                comandoReserva.getFechaFinReserva()
         );
     }
 

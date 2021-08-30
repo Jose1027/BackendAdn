@@ -1,5 +1,7 @@
 package com.ceiba.reserva.adaptador.repositorio;
 
+import com.ceiba.finca.adaptador.dao.MapeoFinca;
+import com.ceiba.finca.modelo.dto.DtoFinca;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.reserva.modelo.entidad.Reserva;
@@ -8,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public class RepositorioReservaMysql implements RepositorioReserva {
@@ -23,8 +26,8 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace="reserva", value="existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="reserva", value="existeExcluyendoId")
-    private static String sqlExisteExcluyendoId;
+    @SqlStatement(namespace="finca", value="cargarFincaPorId")
+    private static String sqlCargarFincaPorId;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -43,6 +46,13 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue("fechaFinReserva", fechaFinReserva);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+    }
+
+    @Override
+    public List<DtoFinca> cargarFincaPorId(Long idFinca){
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idFinca", idFinca);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlCargarFincaPorId,paramSource, new MapeoFinca());
     }
 
 }

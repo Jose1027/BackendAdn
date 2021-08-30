@@ -19,5 +19,4 @@ public class ComandoReserva {
     private Long idFinca;
     private LocalDateTime fechaInicioReserva;
     private LocalDateTime fechaFinReserva;
-    private Double valorTotalReserva;
 }

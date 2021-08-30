@@ -34,6 +34,6 @@ public class ReservaTestDataBuilder {
     }
 
     public Reserva build(){
-        return new Reserva(id,idUsuario,idFinca,fechaFinReserva,fechaInicioReserva,valorTotalReserva);
+        return new Reserva(id,idUsuario,idFinca,fechaFinReserva,fechaInicioReserva);
     }
 }
