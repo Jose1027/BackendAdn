@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fincas")
-@Api(tags={"Controlador consulta fincas"})
+@Api(tags = {"Controlador consulta fincas"})
 public class ConsultaControladorFinca {
 
     private ManejadorListarFincas manejadorListarFincas;

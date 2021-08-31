@@ -1,4 +1,4 @@
-package com.ceiba.reserva.controlador;
+package com.ceiba.finca.controlador;
 
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
+import com.ceiba.reserva.controlador.ConsultaControladorReserva;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +19,24 @@ import org.springframework.test.web.servlet.MockMvc;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @WebMvcTest(ConsultaControladorReserva.class)
-public class ConsultaControladorReservaTest {
+public class ConsultaControladorFincaTest {
+
 
     @Autowired
     private MockMvc mocMvc;
 
     @Test
     public void listar() throws Exception {
+
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/reservas")
+
+
+        mocMvc.perform(get("/fincas")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].idUsuario", is("12345")));
+                .andExpect(jsonPath("$[0].nombre", is("el refugio")));
     }
-
 
 }
