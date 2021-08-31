@@ -29,7 +29,7 @@ public class ServicioCrearReserva {
 
     public Long ejecutar(Reserva reserva) {
         DtoFinca dtoFinca;
-        double precioReservaTotal = 0.0;
+        double precioReservaTotal;
         validarExistenciaPrevia(reserva);
         dtoFinca = cargarFinca(reserva.getIdFinca());
         precioReservaTotal = calcularPrecioReservaTotal(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva(), dtoFinca.getPrecioPorDia());
@@ -45,7 +45,7 @@ public class ServicioCrearReserva {
     }
 
     public int calcularDiasEntreFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
-        return (int) DAYS.between(fechaInicial,fechaFinal);
+        return (int) DAYS.between(fechaInicial, fechaFinal);
     }
 
     public DtoFinca cargarFinca(Long idFinca) {
@@ -58,9 +58,8 @@ public class ServicioCrearReserva {
     }
 
     public double calcularPrecioReservaTotal(LocalDateTime fechaInicial, LocalDateTime fechaFinal, double precioPorDia) {
-        double precioTotal = 0.0;
-        int diasReserva = 0;
-        diasReserva = calcularDiasEntreFechas(fechaInicial, fechaFinal);
+        double precioTotal;
+        int diasReserva = calcularDiasEntreFechas(fechaInicial, fechaFinal);
         precioTotal = calcularPrecioReservaPorDias(fechaInicial, diasReserva, precioPorDia);
         if (diasReserva >= CANTIDAD_DIAS_PARA_APLICAR_DESCUENTO) {
             precioTotal = precioTotal - (precioTotal * PROCENTAJE_DE_DESCUENTO_MAS_DE_TRES_DIAS);
