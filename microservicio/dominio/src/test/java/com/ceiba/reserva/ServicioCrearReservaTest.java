@@ -3,8 +3,8 @@ package com.ceiba.reserva;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
+import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.finca.modelo.dto.DtoFinca;
-import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class ServicioCrearReservaTest {
     @Test
@@ -57,7 +56,7 @@ public class ServicioCrearReservaTest {
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         int diasEntreFechas = servicioCrearReserva.calcularDiasEntreFechas(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva());
         double precioCalculado = servicioCrearReserva.calcularPrecioReservaPorDias(reserva.getFechaInicioReserva(), diasEntreFechas, dtoFinca.getPrecioPorDia());
-        assertEquals(1080000.0, precioCalculado,0);
+        assertEquals(1120000, precioCalculado,0);
     }
 
     @Test
@@ -67,7 +66,7 @@ public class ServicioCrearReservaTest {
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         double precioCalculado = servicioCrearReserva.calcularPrecioReservaTotal(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva(), dtoFinca.getPrecioPorDia());
-        assertEquals(918000.0, precioCalculado,0);
+        assertEquals(952000, precioCalculado,0);
     }
 
 
@@ -85,4 +84,20 @@ public class ServicioCrearReservaTest {
         assertEquals(0L,idResultado,0);
     }
 
+    @Test
+    public void validarFechaInicioMenorQueFechaFin() {
+        Reserva reserva = new ReservaTestDataBuilder().buildFechaInicioDespuesDeFechaFin();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        BasePrueba.assertThrows(() ->servicioCrearReserva.validarFechaFinalDespuesDeFechaInicial(reserva.getFechaInicioReserva(),reserva.getFechaFinReserva()), ExcepcionValorInvalido.class, "La fecha de inicio de la reserva no puede ser mayor que la fecha final");
+    }
+
+    @Test
+    public void validarQueDiasDeReservaSuperaLoEstablecido() {
+        Reserva reserva = new ReservaTestDataBuilder().buildFechaFinSuperaLaSemana();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        int diasEntreFechas = servicioCrearReserva.calcularDiasEntreFechas(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva());
+        BasePrueba.assertThrows(() ->servicioCrearReserva.validarMaximoDiasReserva(diasEntreFechas), ExcepcionValorInvalido.class, "Solo se puede reservar maximo 7 dias");
+    }
 }
