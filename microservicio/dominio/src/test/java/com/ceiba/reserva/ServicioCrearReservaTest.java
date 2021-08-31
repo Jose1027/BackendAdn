@@ -4,6 +4,7 @@ import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.finca.modelo.dto.DtoFinca;
+import com.ceiba.finca.puerto.repositorio.RepositorioFinca;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
@@ -12,7 +13,11 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class ServicioCrearReservaTest {
     @Test
@@ -64,4 +69,20 @@ public class ServicioCrearReservaTest {
         double precioCalculado = servicioCrearReserva.calcularPrecioReservaTotal(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva(), dtoFinca.getPrecioPorDia());
         assertEquals(918000.0, precioCalculado,0);
     }
+
+
+    @Test
+    public void validarReservaSinExistenciaPreviaTest() {
+        Reserva reserva = new ReservaTestDataBuilder().build();
+        DtoFinca dtoFinca = new ReservaTestDataBuilder().buildIDtoFinca();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        List<DtoFinca> fincas= new ArrayList<>();
+        fincas.add(dtoFinca);
+        Mockito.when(repositorioReserva.cargarFincaPorId(Mockito.anyLong())).thenReturn(fincas);
+
+        Long idResultado = servicioCrearReserva.ejecutar(reserva);
+        assertEquals(0L,idResultado,0);
+    }
+
 }
