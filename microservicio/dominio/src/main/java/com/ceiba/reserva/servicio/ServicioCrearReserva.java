@@ -54,7 +54,7 @@ public class ServicioCrearReserva {
         if (fechaInicial.toLocalDate().equals(fechaFinal.toLocalDate())) {
             return DIAS_PARA_FECHAS_IGUALES;
         }
-        return (int) DAYS.between(fechaInicial, fechaFinal);
+        return (int) DAYS.between(fechaInicial, fechaFinal.plusDays(1));
     }
 
     public DtoFinca cargarFinca(Long idFinca) {
@@ -71,7 +71,7 @@ public class ServicioCrearReserva {
         int diasReserva = calcularDiasEntreFechas(fechaInicial, fechaFinal);
         validarMaximoDiasReserva(diasReserva);
         precioTotal = calcularPrecioReservaPorDias(fechaInicial, diasReserva, precioPorDia);
-        if (diasReserva >= CANTIDAD_DIAS_PARA_APLICAR_DESCUENTO) {
+        if (diasReserva > CANTIDAD_DIAS_PARA_APLICAR_DESCUENTO) {
             precioTotal = precioTotal - (precioTotal * PROCENTAJE_DE_DESCUENTO_MAS_DE_TRES_DIAS);
         }
         return precioTotal;

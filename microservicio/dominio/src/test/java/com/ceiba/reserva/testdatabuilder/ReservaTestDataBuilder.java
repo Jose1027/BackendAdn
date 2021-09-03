@@ -19,8 +19,8 @@ public class ReservaTestDataBuilder {
 
         idUsuario = "1088302416";
         idFinca = 1L;
-        fechaInicioReserva = LocalDateTime.now().plusDays(2);
-        fechaFinReserva = LocalDateTime.now().plusDays(5);
+        fechaInicioReserva = LocalDateTime.of(2021,9,1,0,0);
+        fechaFinReserva = LocalDateTime.of(2021,9,3,0,0);
         valorTotalReserva = 800000.0;
     }
 
@@ -45,6 +45,14 @@ public class ReservaTestDataBuilder {
     public DtoFinca buildIDtoFinca() {
         DtoFinca dtoFinca = new DtoFinca(1L, "la hermosa", "vereda la hermosa", LocalDateTime.now().minusYears(2), 400000.0, 6);
         return dtoFinca;
+    }
+
+    public Reserva buildFinDeSemana() {
+        return new Reserva(id, idUsuario, idFinca,LocalDateTime.of(2021,9,4,0,0), LocalDateTime.of(2021,9,5,0,0));
+    }
+
+    public Reserva buildSemanaYFinDeSemana() {
+        return new Reserva(id, idUsuario, idFinca,LocalDateTime.of(2021,9,3,0,0), LocalDateTime.of(2021,9,5,0,0));
     }
 
     public ReservaTestDataBuilder conFechaInicio(LocalDateTime fechaInicio) {
