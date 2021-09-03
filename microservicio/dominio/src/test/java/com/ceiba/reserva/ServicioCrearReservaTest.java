@@ -41,6 +41,17 @@ public class ServicioCrearReservaTest {
     }
 
     @Test
+    public void calcularDiasEntreFechasMismoDiaTest() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder();
+        reservaTestDataBuilder.conFechaFin(LocalDateTime.of(2021,9,1,0,0));
+        Reserva reserva = reservaTestDataBuilder.build();
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
+        int diasEntreFechas = servicioCrearReserva.calcularDiasEntreFechas(reserva.getFechaInicioReserva(), reserva.getFechaFinReserva());
+        assertEquals(1, diasEntreFechas);
+    }
+
+    @Test
     public void validarFincaNoExiste() {
         Reserva reserva = new ReservaTestDataBuilder().buildIdFincaNoExiste();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
@@ -127,7 +138,6 @@ public class ServicioCrearReservaTest {
 
     @Test
     public void validarQueDiasDeReservaSuperaLoEstablecido() {
-        Reserva reserva = new ReservaTestDataBuilder().buildFechaFinSuperaLaSemana();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
         int quinceDias = 15;

@@ -69,8 +69,4 @@ public class ReservaTestDataBuilder {
         return new Reserva(id, idUsuario, idFinca, LocalDateTime.now().plusDays(10), fechaFinReserva);
     }
 
-    public Reserva buildFechaFinSuperaLaSemana() {
-        return new Reserva(id, idUsuario, idFinca, fechaInicioReserva, LocalDateTime.now().plusDays(15));
-    }
-
 }
