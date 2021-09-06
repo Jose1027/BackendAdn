@@ -5,8 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.reserva.comando.ComandoReserva;
 
-import java.time.LocalTime;
-
 @Component
 public class FabricaReserva {
 
@@ -15,8 +13,8 @@ public class FabricaReserva {
                 comandoReserva.getId(),
                 comandoReserva.getIdUsuario(),
                 comandoReserva.getIdFinca(),
-                comandoReserva.getFechaInicioReserva().atStartOfDay(),
-                comandoReserva.getFechaFinReserva().atTime(23,59,0)
+                comandoReserva.getFechaInicioReserva(),
+                comandoReserva.getFechaFinReserva()
         );
     }
 
