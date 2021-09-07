@@ -1,5 +1,6 @@
 package com.ceiba.finca.controlador;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -39,4 +40,16 @@ public class ConsultaControladorFincaTest {
                 .andExpect(jsonPath("$[0].nombre", is("el refugio")));
     }
 
+    @Test
+    public void listarConDisponibilidad() throws Exception {
+        // arrange
+        String fechaInicio = "2021-09-11";
+        String fechaFin = "2020-09-13";
+        // act - assert
+        mocMvc.perform(get("/fincas/{fechaInicio}/{fechaFin}/", fechaInicio, fechaFin)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].nombre", is("el refugio")));
+    }
 }

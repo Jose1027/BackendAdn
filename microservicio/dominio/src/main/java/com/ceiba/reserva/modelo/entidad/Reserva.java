@@ -3,7 +3,7 @@ package com.ceiba.reserva.modelo.entidad;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import lombok.Setter;
 
 
@@ -14,11 +14,11 @@ public class Reserva {
     private Long id;
     private String idUsuario;
     private Long idFinca;
-    private LocalDateTime fechaInicioReserva;
-    private LocalDateTime fechaFinReserva;
+    private LocalDate fechaInicioReserva;
+    private LocalDate fechaFinReserva;
     private Double valorTotalReserva;
 
-    public Reserva(Long id, String idUsuario, Long idFinca, LocalDateTime fechaInicioReserva, LocalDateTime fechaFinReserva) {
+    public Reserva(Long id, String idUsuario, Long idFinca, LocalDate fechaInicioReserva, LocalDate fechaFinReserva) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idFinca = idFinca;

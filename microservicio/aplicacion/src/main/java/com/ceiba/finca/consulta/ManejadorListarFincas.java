@@ -18,4 +18,8 @@ public class ManejadorListarFincas {
     public List<DtoFinca> ejecutar() {
         return this.daoFinca.listar();
     }
+
+    public List<DtoFinca> ejecutar(String fechaInicio, String fechaFin) {
+        return this.daoFinca.listarConDisponibilidad(fechaInicio, fechaFin);
+    }
 }

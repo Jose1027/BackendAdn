@@ -9,7 +9,7 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -39,7 +39,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
-    public boolean existe(Long idFinca, LocalDateTime fechaInicioReserva, LocalDateTime fechaFinReserva) {
+    public boolean existe(Long idFinca, LocalDate fechaInicioReserva, LocalDate fechaFinReserva) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("idFinca", idFinca);
         paramSource.addValue("fechaInicioReserva", fechaInicioReserva);

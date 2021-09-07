@@ -7,7 +7,7 @@ import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -50,8 +50,8 @@ public class ServicioCrearReserva {
         }
     }
 
-    public int calcularDiasEntreFechas(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
-        if (fechaInicial.toLocalDate().equals(fechaFinal.toLocalDate())) {
+    public int calcularDiasEntreFechas(LocalDate fechaInicial, LocalDate fechaFinal) {
+        if (fechaInicial.equals(fechaFinal)) {
             return DIAS_PARA_FECHAS_IGUALES;
         }
         return (int) DAYS.between(fechaInicial, fechaFinal.plusDays(1));
@@ -66,7 +66,7 @@ public class ServicioCrearReserva {
         }
     }
 
-    public double calcularPrecioReservaTotal(LocalDateTime fechaInicial, LocalDateTime fechaFinal, double precioPorDia) {
+    public double calcularPrecioReservaTotal(LocalDate fechaInicial, LocalDate fechaFinal, double precioPorDia) {
         double precioTotal;
         int diasReserva = calcularDiasEntreFechas(fechaInicial, fechaFinal);
         validarMaximoDiasReserva(diasReserva);
@@ -77,9 +77,9 @@ public class ServicioCrearReserva {
         return precioTotal;
     }
 
-    public double calcularPrecioReservaPorDias(LocalDateTime fechaInicial, int dias, double precioPorDia) {
+    public double calcularPrecioReservaPorDias(LocalDate fechaInicial, int dias, double precioPorDia) {
         ZoneId defaultZoneId = ZoneId.systemDefault();
-        Date dateFechaInicial = Date.from(fechaInicial.atZone(defaultZoneId).toInstant());
+        Date dateFechaInicial = Date.from(fechaInicial.atStartOfDay().atZone(defaultZoneId).toInstant());
         Calendar fechaInicioCalendar = Calendar.getInstance();
         fechaInicioCalendar.setTime(dateFechaInicial);
         int contadorDias = 0;
@@ -96,7 +96,7 @@ public class ServicioCrearReserva {
         return precioTotal;
     }
 
-    public void validarFechaFinalDespuesDeFechaInicial(LocalDateTime fecheInicio, LocalDateTime fechaFin) {
+    public void validarFechaFinalDespuesDeFechaInicial(LocalDate fecheInicio, LocalDate fechaFin) {
         if (fecheInicio.isAfter(fechaFin)) {
             throw new ExcepcionValorInvalido(FECHA_INICIO_MAYOR_QUE_FECHA_FIN);
         }

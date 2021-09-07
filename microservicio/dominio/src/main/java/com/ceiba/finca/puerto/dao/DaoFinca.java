@@ -12,4 +12,6 @@ public interface DaoFinca {
      * @return las fincas
      */
     List<DtoFinca> listar();
+
+    List<DtoFinca> listarConDisponibilidad(String fechaInicio, String fechaFin);
 }

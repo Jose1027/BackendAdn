@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class ServicioCrearReservaTest {
     @Test
     public void calcularDiasEntreFechasMismoDiaTest() {
         ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder();
-        reservaTestDataBuilder.conFechaFin(LocalDateTime.of(2021,9,1,0,0));
+        reservaTestDataBuilder.conFechaFin(LocalDate.of(2021,9,1));
         Reserva reserva = reservaTestDataBuilder.build();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
         ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva);
@@ -103,8 +103,8 @@ public class ServicioCrearReservaTest {
     @Test
     public void calcularPrecioReservaTodaLaSemanaYFinDeSemana() {
         ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder();
-        reservaTestDataBuilder.conFechaInicio(LocalDateTime.of(2021,8,30,0,0));
-        reservaTestDataBuilder.conFechaFin(LocalDateTime.of(2021,9,5,0,0));
+        reservaTestDataBuilder.conFechaInicio(LocalDate.of(2021,8,30));
+        reservaTestDataBuilder.conFechaFin(LocalDate.of(2021,9,5));
         Reserva reserva = reservaTestDataBuilder.build();
         DtoFinca dtoFinca = new ReservaTestDataBuilder().buildIDtoFinca();
         RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
