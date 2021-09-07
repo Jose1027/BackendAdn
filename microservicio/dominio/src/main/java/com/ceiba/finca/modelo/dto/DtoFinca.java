@@ -1,5 +1,7 @@
 package com.ceiba.finca.modelo.dto;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
